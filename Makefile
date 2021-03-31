@@ -13,6 +13,7 @@ sandbox: ## Build the whole sandbox
 	vagrant up juiceshop
 	vagrant up dvwa
 	vagrant up metasploitable
+	vagrant up samuraiwtf
 
 kali: ## Build the Kali box
 	vagrant up kali --provision

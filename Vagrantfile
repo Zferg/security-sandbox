@@ -35,11 +35,21 @@ Vagrant.configure("2") do |config|
     kali.vm.post_up_message = "Welcome to Kali Linux by Offensive Security. Enjoy your stay."
   end
   
+  # SamuraiWTF
+  config.vm.define "samuraiwtf", autostart: false do |samuraiwtf|
+    config.vm.box = "SamuraiWTF/samuraiwtf-base_box"
+    samuraiwtf.vm.provider "virtualbox" do |v|
+      v.name = "samuraiwtf"
+      v.memory = 2048
+    end
+    samuraiwtf.vm.provision "shell", path: ".provision/samuraiwtf.sh"
+  end
+
   # JUICESHOP
   config.vm.define "juiceshop", autostart: false do |juiceshop|
   	juiceshop.vm.provider "virtualbox" do |v|
   		v.name = "juiceshop"
-		v.memory = 2048
+		  v.memory = 2048
   	end
   
     juiceshop.vm.box = "ubuntu/xenial64"
@@ -55,7 +65,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "dvwa", autostart: false do |dvwa|
   	dvwa.vm.provider "virtualbox" do |v|
   		v.name = "dvwa"
-		v.memory = 2048
+		  v.memory = 2048
   	end
 
     dvwa.vm.box = "ubuntu/xenial64"
@@ -73,7 +83,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "metasploitable", autostart: false do |metasploitable|
   	metasploitable.vm.provider "virtualbox" do |v|
   		v.name = "metasploitable"
-		v.memory = 4096
+		  v.memory = 4096
   	end
   	
     metasploitable.vm.box = "ubuntu/xenial64"
@@ -86,4 +96,32 @@ Vagrant.configure("2") do |config|
 
     metasploitable.vm.post_up_message = "View this machine at http://192.168.33.40"
   end
+
+  # WebGoat
+  config.vm.define "webgoat", autostart: false do |webgoat|
+  	webgoat.vm.provider "virtualbox" do |v|
+  		v.name = "webgoat"
+		  v.memory = 2048
+  	end
+  	
+    webgoat.vm.box = "ubuntu/xenial64"
+    webgoat.vm.hostname = "webgoat.local"
+    webgoat.vm.network "private_network", ip: "192.168.33.50"
+ 
+    webgoat.vm.provision "docker" do |d|
+      d.run "alpine"
+    end
+    
+    webgoat.vm.provision "shell" do |d|
+      d.inline = <<-EOF 
+        sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+        curl https://raw.githubusercontent.com/WebGoat/WebGoat/develop/docker-compose.yml | docker-compose -f - up -d 
+      EOF
+    end
+
+    webgoat.vm.post_up_message = "View WebGoat at http://192.168.33.50:8080/WebGoat and WebWolf at http://192.168.33.50:9090/WebWolf"
+  end
+
+
 end

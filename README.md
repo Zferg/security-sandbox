@@ -72,16 +72,6 @@ proxychains nmap -sT -Pn scanme.nmap.org
 
 These are generally catered to learning skills or specific tools/frameworks.
 
-#### Metasploitable 2
-
-A vulnerable VM made to teach, and give you a target for, the Metasploit framework.
-
-```shell
-# Start up Metasploitable
-vagrant up metasploitable
-
-# Navigate to http://192.168.33.40
-```
 #### Juiceshop
 
 OWASP made well-rounded vulnerable web application that has tutorials and challenges that will help you learn, and exploit, web vulnerabilities.
@@ -92,27 +82,7 @@ vagrant up juiceshop
 
 # Navigate to http://192.168.33.20
 ```
-#### NETinVM
 
-Creates a whole network of virtual machines inside of a singular virtual machine image, very helpful to learn about networks and network security. 
-
-```shell
-# Start up NETinVM
-vagrant up netinvm
-```
-
-#### WebGoat
-
-OWASP open source project that explains a vulnerability and then allows you to test it in the web application.
-
-```shell
-# Start up WebGoat
-vagrant up webgoat
-```
-
-### Catered to Testing Skills
-
-These are more catered toward using and testing your tools and skills.
 #### Damn Vulnerable Web Application
 
 PHP/MySQL web application that gives you a place to test what you have learned.
@@ -123,14 +93,34 @@ vagrant up dvwa
 
 # Navigate to http://192.168.33.30
 ```
-#### Mutillidae 2
 
-An easy to use open source vulnerable web application that has been kept up to date by webpwnized for years, has been used in everything from corporate web security training to gradute security classes.
+#### Metasploitable 3
+
+A vulnerable VM made to teach, and give you a target for, the Metasploit framework.
 
 ```shell
-# Start up Mutillidae
-vagrant up mutillidae
+# Start up Metasploitable
+vagrant up metasploitable
+
+# Navigate to http://192.168.33.40
 ```
+
+#### WebGoat
+
+OWASP open source project that explains a vulnerability and then allows you to test it in the web application.
+
+```shell
+# Start up WebGoat
+vagrant up webgoat
+
+# For Webgoat navigate to http://192.168.33.50:8080/WebGoat
+# For Webwolf navigate to http://192.168.33.50:9090/WebWolf
+```
+
+### Catered to Testing Skills
+
+These are more catered toward using and testing your tools and skills.
+
 #### SamuraiWTF
 
 While it is not itself a vulnerable application, it contains vulnerable web applications that can be used to test yourself against.
