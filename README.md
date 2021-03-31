@@ -6,7 +6,7 @@
 
 ![Security Sandbox Logo](./images/security-sandbox.png)
 
-## Requirements
+## Requirements 🎬
 
 There are only two requirements to
 get up and running:
@@ -23,7 +23,7 @@ my preferred directory structure and workspace environment.
 
 ```shell
 # Clone the repository with the Github CLI
-gh repo clone brittonhayes/security-sandbox
+gh repo clone zferg/security-sandbox
 
 # Start up the primary Kali machine
 vagrant up
@@ -33,7 +33,7 @@ username: vagrant
 password: vagrant
 ```
 
-### Help
+## Help 🆘
 
 To view the available helper commands use `make help`.
 
@@ -51,7 +51,11 @@ destroy         Destroy the sandbox
 This virtual environment comes with a few testing labs available. 
 Pick your flavor!
 
-### Kali
+### Red Team Tools 🔧
+
+These are tools that will help you exploit the vulnerable distributions and applications found below.
+
+#### Kali
 
 The kali box comes with tor and proxychains setup on boot, so feel free to chain requests through there first.
 
@@ -64,7 +68,23 @@ systemctl status tor
 proxychains nmap -sT -Pn scanme.nmap.org 
 ```
 
-### Juiceshop
+### Catered to Learning
+
+These are generally catered to learning skills or specific tools/frameworks.
+
+#### Metasploitable 2
+
+A vulnerable VM made to teach, and give you a target for, the Metasploit framework.
+
+```shell
+# Start up Metasploitable
+vagrant up metasploitable
+
+# Navigate to http://192.168.33.40
+```
+#### Juiceshop
+
+OWASP made well-rounded vulnerable web application that has tutorials and challenges that will help you learn, and exploit, web vulnerabilities.
 
 ```shell
 # Start up juiceshop
@@ -72,8 +92,30 @@ vagrant up juiceshop
 
 # Navigate to http://192.168.33.20
 ```
+#### NETinVM
 
-### Damn Vulnerable Web Application
+Creates a whole network of virtual machines inside of a singular virtual machine image, very helpful to learn about networks and network security. 
+
+```shell
+# Start up NETinVM
+vagrant up netinvm
+```
+
+#### WebGoat
+
+OWASP open source project that explains a vulnerability and then allows you to test it in the web application.
+
+```shell
+# Start up WebGoat
+vagrant up webgoat
+```
+
+### Catered to Testing Skills
+
+These are more catered toward using and testing your tools and skills.
+#### Damn Vulnerable Web Application
+
+PHP/MySQL web application that gives you a place to test what you have learned.
 
 ```shell
 # Start up DVWA
@@ -81,14 +123,21 @@ vagrant up dvwa
 
 # Navigate to http://192.168.33.30
 ```
+#### Mutillidae 2
 
-### Metasploitable
+An easy to use open source vulnerable web application that has been kept up to date by webpwnized for years, has been used in everything from corporate web security training to gradute security classes.
 
 ```shell
-# Start up Metasploitable
-vagrant up metasploitable
+# Start up Mutillidae
+vagrant up mutillidae
+```
+#### SamuraiWTF
 
-# Navigate to http://192.168.33.40
+While it is not itself a vulnerable application, it contains vulnerable web applications that can be used to test yourself against.
+
+```shell
+# Start up SamuraiWTF
+vagrant up samuraiWTF
 ```
 
 ## Blue Team Environment (Optional) 🟦
