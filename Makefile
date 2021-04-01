@@ -14,6 +14,7 @@ sandbox: ## Build the whole sandbox
 	vagrant up dvwa
 	vagrant up metasploitable
 	vagrant up samuraiwtf
+	vagrant up webgoat
 
 kali: ## Build the Kali box
 	vagrant up kali --provision
@@ -23,6 +24,8 @@ teardown: ## Tear down the sandbox
 	vagrant halt juiceshop
 	vagrant halt dvwa
 	vagrant halt metasploitable
+	vagrant halt samuraiwtf
+	vagrant halt webgoat
 
 destroy: ## Destroy the sandbox
 	vagrant destroy
