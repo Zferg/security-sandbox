@@ -132,7 +132,16 @@ vagrant up samuraiWTF
 
 ## Blue Team Environment (Optional) 🟦
 
-If you're looking for a good blue team environment to pair with this sandbox, I recommend a [Detection Lab](https://detectionlab.network/) deployment. 
+### Security Onion
+
+Open source platform created and maintained for cybersecurity professionals, this will have what you need for a blue team enviroment.
+
+```shell
+# Start up SecurityOnion
+vagrant up securityonion
+```
+
+If you're looking for another good blue team environment to pair with this sandbox, I recommend a [Detection Lab](https://detectionlab.network/) deployment. 
 
 Setup instructions can be found here:
 [Detection Lab Deployment Instructions](https://detectionlab.network/deployment/)

@@ -32,7 +32,25 @@ Vagrant.configure("2") do |config|
       trigger.run = { inline: "tldr -u" }
     end
 
-    kali.vm.post_up_message = "Welcome to Kali Linux by Offensive Security. Enjoy your stay."
+    kali.vm.post_up_message = "Welcome to Kali Linux by Offensive Security. Enjoy your stay!"
+  end
+  
+  config.vm.define "securityonion", autostart: false do |securityonion|
+  	securityonion.vm.provider "virtualbox" do |v|
+  		v.name = "securityonion"
+		v.memory = 4096
+		v.cpus = 2
+  	end
+
+    securityonion.vm.box = "dlee35/securityonion"
+    securityonion.vm.hostname = "securityonion.local"
+
+    securityonion.vm.provision "shell" do |S|
+      s.inline = "sudo apt-get install -y $1"
+      s.args = "tldr"
+    end
+    
+    securityonion.vm.post_up_message = "Welcome to Security Onion by Security Onion Solutions. Bon Appetit!"
   end
   
   # SamuraiWTF
