@@ -28,7 +28,14 @@ gh repo clone zferg/security-sandbox
 # Start up the primary Kali machine
 vagrant up
 
-# The login is
+# The default login is
+username: vagrant
+password: vagrant
+
+# Start up the optional Security Onion machine
+vagrant up securityonion
+
+# The default login is
 username: vagrant
 password: vagrant
 ```
@@ -41,9 +48,12 @@ To view the available helper commands use `make help`.
 ❯ make help
 Usage:
 kali            Build the Kali box
-sandbox         Build the whole sandbox
-teardown        Tear down the sandbox
-destroy         Destroy the sandbox
+sandbox         Build every box
+redlearning     Build the red team learning sandbox
+redskills       Build the red team skill testing sandbox
+blueteam        Build the blueteam sandbox
+teardown        Tear down any sandboxes
+destroy         Destroy all sandboxes
 ```
 
 ## Red Team Lab Environment (Optional) 🟥
@@ -136,9 +146,17 @@ vagrant up samuraiWTF
 
 Open source platform created and maintained for cybersecurity professionals, this will have what you need for a blue team enviroment.
 
+Default Login
+User: Vagrant
+Password: Vagrant
+
 ```shell
 # Start up SecurityOnion
 vagrant up securityonion
+
+Default Login
+User: Vagrant
+Password: Vagrant
 ```
 
 If you're looking for another good blue team environment to pair with this sandbox, I recommend a [Detection Lab](https://detectionlab.network/) deployment. 
@@ -175,3 +193,9 @@ vagrant share
 [Metasploitable](https://github.com/rapid7/metasploitable3)
 
 [Metasploitable vulnerabilities](https://github.com/rapid7/metasploitable3/wiki/Vulnerabilities)
+
+[WebGoat](https://owasp.org/www-project-webgoat/)
+
+[SamuraiWTF](https://www.samurai-wtf.org/)
+
+[Security Onion](https://securityonionsolutions.com/)

@@ -1,6 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+$LINUX_TOOLS = <<-EOF
+
+  sudo apt install -y golang-go tldr httpie jq tor 
+
+EOF
+
 Vagrant.configure("2") do |config|
   # Kali Box
   config.vm.define "kali", primary: true do |kali|
@@ -14,27 +20,27 @@ Vagrant.configure("2") do |config|
     kali.vm.hostname = "kali.local"
     
     # Install tools
-    kali.vm.provision "shell" do |s|
-      s.inline = "sudo apt-get install -y $1"
-      s.args = "golang-go tldr httpie jq yq tor"
-    end
-    
-    # Start services
-    kali.vm.provision "shell", type: "shell", run: "always" do |s|
-      s.inline = "systemctl start tor"
+    kali.vm.provision "shell", type: "shell" do |s|
+      s.inline = $LINUX_TOOLS
     end
 
     # Setup directory structure
     kali.vm.provision "file", source: "data/code", destination: "$HOME/code"
     kali.vm.provision "file", source: "data/ctf", destination: "$HOME/ctf"
+    
     kali.trigger.after :up do |trigger|
-      trigger.info = "Updating tldr"
-      trigger.run = { inline: "tldr -u" }
+      trigger.info = "Updating tldr and starting tor"
+      trigger.run_remote = { 
+        inline: <<-EOF 
+          sudo service tor start
+        EOF
+      }
     end
 
     kali.vm.post_up_message = "Welcome to Kali Linux by Offensive Security. Enjoy your stay!"
   end
   
+  # Security Onion
   config.vm.define "securityonion", autostart: false do |securityonion|
   	securityonion.vm.provider "virtualbox" do |v|
   		v.name = "securityonion"
@@ -45,10 +51,9 @@ Vagrant.configure("2") do |config|
     securityonion.vm.box = "dlee35/securityonion"
     securityonion.vm.hostname = "securityonion.local"
 
-    securityonion.vm.provision "shell" do |S|
-      s.inline = "sudo apt-get install -y $1"
-      s.args = "tldr"
-    end
+    # securityonion.vm.provision "shell" do |s|
+    #   s.inline = $LINUX_TOOLS
+    # end
     
     securityonion.vm.post_up_message = "Welcome to Security Onion by Security Onion Solutions. Bon Appetit!"
   end
@@ -63,7 +68,7 @@ Vagrant.configure("2") do |config|
     samuraiwtf.vm.provision "shell", path: ".provision/samuraiwtf.sh"
   end
 
-  # JUICESHOP
+  # Juiceshop
   config.vm.define "juiceshop", autostart: false do |juiceshop|
   	juiceshop.vm.provider "virtualbox" do |v|
   		v.name = "juiceshop"
@@ -79,7 +84,7 @@ Vagrant.configure("2") do |config|
     juiceshop.vm.post_up_message = "View this machine at http://192.168.33.20"
   end
 
-  # DAMN VULNERABLE WEB APP
+  # Damn Vulnerable Web App
   config.vm.define "dvwa", autostart: false do |dvwa|
   	dvwa.vm.provider "virtualbox" do |v|
   		v.name = "dvwa"
@@ -97,7 +102,7 @@ Vagrant.configure("2") do |config|
     dvwa.vm.post_up_message = "View this machine at http://192.168.33.30"
   end
 
-  # METASPLOITABLE
+  #Metasploitable
   config.vm.define "metasploitable", autostart: false do |metasploitable|
   	metasploitable.vm.provider "virtualbox" do |v|
   		v.name = "metasploitable"
