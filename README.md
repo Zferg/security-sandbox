@@ -1,8 +1,9 @@
 # Security Sandbox 🏖️
 
-> My personal sandbox environment for testing out new
-> security tools, vulnerable applications, and using in CTFs.
-> Feel free to use this for your own studying or enjoyment!
+> This is a forked version of [Britton Hayes'](https://github.com/brittonhayes/security-sandbox) security sandbox,
+> my goals for this fork are to expand the repository with a broader subset of tools.
+> 
+> Please feel free to use this for studying, testing, and diving into cybersecurity!
 
 ![Security Sandbox Logo](./images/security-sandbox.png)
 
@@ -11,7 +12,7 @@
 There are only two requirements to
 get up and running:
 
-- [Virtual Box](https://www.virtualbox.org/) or [VMWare Workstation](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)
+- [Virtual Box](https://www.virtualbox.org/)
 - [Hashicorp Vagrant](https://www.vagrantup.com/downloads)
 
 Once you've got a virtualization solution setup as well as Hashicorp Vagrant, you're ready to go.
