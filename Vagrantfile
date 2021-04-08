@@ -12,10 +12,11 @@ Vagrant.configure("2") do |config|
   config.vm.define "kali", primary: true do |kali|
   	kali.vm.provider "virtualbox" do |v|
   		v.name = "kali"
-		v.memory = 4096
-		v.cpus = 2
+		  v.memory = 4096
+		  v.cpus = 2
   	end
 
+    # Install kali vagrant box
     kali.vm.box = "kalilinux/rolling"
     kali.vm.hostname = "kali.local"
     
@@ -29,7 +30,7 @@ Vagrant.configure("2") do |config|
     kali.vm.provision "file", source: "data/ctf", destination: "$HOME/ctf"
     
     kali.trigger.after :up do |trigger|
-      trigger.info = "Updating tldr and starting tor"
+      trigger.info = "Starting tor"
       trigger.run_remote = { 
         inline: <<-EOF 
           sudo service tor start
